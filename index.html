@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -156,6 +159,17 @@
             font-size: 2.5rem;
         }
 
+        .owl-carousel {
+            display: block;
+        }
+
+        .owl-carousel .owl-item {
+            min-height: 1px;
+            float: left;
+            padding: 10px;
+            margin-right: 15px;
+        }
+
         .testimonial-card {
             padding: 2rem;
             margin-bottom: 2rem;
@@ -172,12 +186,14 @@
             font-size: 1.2rem;
             color: #6c757d;
             margin-bottom: 1rem;
+            text-align: center;
         }
 
         .testimonial-author {
             font-size: 1.5rem;
             font-weight: bold;
             color: #343a40;
+            text-align: center;
         }
 
         footer {
@@ -247,12 +263,8 @@
                         <h4><strong>Who We Are</strong></h4>
                         <p>We are EventHubPokhara, dedicated to curating and showcasing the best events happening in
                             Pokhara. From concerts to workshops, we connect you with unforgettable experiences. Our
-                            team is passionate about bringing the community together through diverse events that cater
-                            to all interests.</p>
-                        <p>Our platform is designed to make it easy for you to find events that you'll love. Whether
-                            you're into music, art, food, or sports, we've got something for everyone. We work closely
-                            with local event organizers to bring you the most exciting and unique events in the city.
-                        </p>
+                            team is passionate about bringing the community together through cultural and artistic
+                            events.</p>
                     </div>
                     <div class="col-md-6 animate__animated animate__fadeInRight">
                         <h4><strong>Our Mission</strong></h4>
@@ -260,10 +272,6 @@
                             and event organizers, creating a vibrant cultural scene in Pokhara. We believe that by
                             fostering a strong sense of community through events, we can contribute to the cultural and
                             social enrichment of our city.</p>
-                        <p>At EventHubPokhara, we are committed to providing excellent customer service and a smooth
-                            booking experience. Our user-friendly platform allows you to browse, book, and enjoy events
-                            with ease. Join us in supporting local talent and making Pokhara a hub of creativity and
-                            excitement.</p>
                     </div>
                 </div>
             </div>
@@ -361,22 +369,22 @@
         <div class="testimonials">
             <div class="container">
                 <h2 class="testimonial-title animate__animated animate__fadeIn">Testimonials</h2>
-                <div class="row">
-                    <div class="col-md-4 animate__animated animate__fadeInLeft">
+                <div class="owl-carousel owl-theme">
+                    <div class="item">
                         <div class="testimonial-card border-0 shadow-sm">
                             <p class="testimonial-text">"EventHubPokhara helped me discover amazing events that I
                                 wouldn't have known about otherwise. Great service!"</p>
                             <p class="testimonial-author">Jane Doe</p>
                         </div>
                     </div>
-                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                    <div class="item">
                         <div class="testimonial-card border-0 shadow-sm">
                             <p class="testimonial-text">"Attending events through EventHubPokhara has been a
                                 delightful experience. Highly recommended!"</p>
                             <p class="testimonial-author">John Smith</p>
                         </div>
                     </div>
-                    <div class="col-md-4 animate__animated animate__fadeInRight">
+                    <div class="item">
                         <div class="testimonial-card border-0 shadow-sm">
                             <p class="testimonial-text">"The variety of events available on EventHubPokhara is
                                 impressive. It's my go-to platform for all event bookings."</p>
@@ -400,6 +408,32 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 30,
+                nav: false,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
