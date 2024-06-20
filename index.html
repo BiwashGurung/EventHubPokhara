@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHubPokhara</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .jumbotron {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .jumbotron h1 {
+            font-size: 3.5rem;
+        }
+
+        .jumbotron p {
+            font-size: 1.5rem;
+        }
+
+        .jumbotron .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-size: 1.5rem;
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .jumbotron .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .section {
+            padding: 4rem 0;
+            background-color: #ffffff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: #007bff;
+        }
+
+        .feature-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+        }
+
+        .feature-description {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            border: none;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .events {
+            background-color: #f8f9fa;
+            padding: 4rem 0;
+        }
+
+        .events .event-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .events .event-card {
+            margin-bottom: 2rem;
+            border: none;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .events .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-card .card-img-top {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 2rem 0;
+        }
+
+        footer p {
+            margin-bottom: 0;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">EventHubPokhara</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <!-- Example of conditional rendering for auth state -->
+                        <a class="nav-link" href="#" id="logoutBtn" style="display: none;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container-fluid">
+        <!-- Hero Section -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-4 animate__animated animate__fadeInDown">Welcome to EventHubPokhara!</h1>
+                <p class="lead animate__animated animate__fadeInUp">Discover and book tickets to your favorite events in Pokhara.</p>
+                <a class="btn btn-primary btn-lg animate__animated animate__fadeInUp" href="events.html" role="button">Browse Events</a>
+            </div>
+        </div>
+
+        <!-- About Us Section -->
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title mb-4 animate__animated animate__fadeIn">About Us</h2>
+                <div class="row">
+                    <div class="col-md-6 animate__animated animate__fadeInLeft">
+                        <h4>Who We Are</h4>
+                        <p>We are EventHubPokhara, dedicated to curating and showcasing the best events happening in Pokhara. From concerts to workshops, we connect you with unforgettable experiences.</p>
+                    </div>
+                    <div class="col-md-6 animate__animated animate__fadeInRight">
+                        <h4>Our Mission</h4>
+                        <p>Our mission is to make event booking seamless and enjoyable. We aim to support local artists and event organizers, creating a vibrant cultural scene in Pokhara.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Us Section -->
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title mb-4 animate__animated animate__fadeIn">Why Choose Us?</h2>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-calendar-check feature-icon"></i>
+                                <h3 class="feature-title mt-3">Easy Booking</h3>
+                                <p class="feature-description">Book your tickets hassle-free with our user-friendly interface.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-map-marker-alt feature-icon"></i>
+                                <h3 class="feature-title mt-3">Local Events</h3>
+                                <p class="feature-description">Discover and attend events happening in Pokhara.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-handshake feature-icon"></i>
+                                <h3 class="feature-title mt-3">Community Focused</h3>
+                                <p class="feature-description">Support local artists and organizers by attending their events.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Events Section -->
+        <div class="events">
+            <div class="container">
+                <h2 class="event-title section-title mb-4 animate__animated animate__fadeIn">Upcoming Events</h2>
+                <div class="row">
+                    <div class="col-md-4 animate__animated animate__fadeInLeft">
+                        <div class="card event-card border-0 shadow-sm">
+                            <img src="event1.jpg" class="card-img-top" alt="Event 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Music Festival</h5>
+                                <p class="card-text">05/02/2024 | Lakeside</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="card event-card border-0 shadow-sm">
+                            <img src="event2.jpg" class="card-img-top" alt="Event 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Art Exhibition</h5>
+                                <p class="card-text">10/03/2024 | Art Gallery</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInRight">
+                        <div class="card event-card border-0 shadow-sm">
+                            <img src="event3.jpg" class="card-img-top" alt="Event 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Food Carnival</h5>
+                                <p class="card-text">20/04/2024 | City Park</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more event cards as needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; 2024 EventHubPokhara. All rights reserved. | Designed by <a href="#" target="_blank">Your Name</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
