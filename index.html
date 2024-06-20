@@ -16,20 +16,42 @@
         }
 
         .navbar {
-            background-color: #ffffff;
+            background-color: #343a40;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-brand {
             font-weight: bold;
+            color: #ffffff;
+        }
+
+        .navbar-brand:hover {
+            color: #e9ecef;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 0.75rem 1rem;
+        }
+
+        .nav-link:hover {
+            color: #e9ecef;
+        }
+
+        .nav-item.active .nav-link {
+            color: #007bff;
+            font-weight: bold;
         }
 
         .jumbotron {
-            background-image: url('background.jpg');
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/657/918/354/himalaya-afterglow-mountain-himalayas-wallpaper-preview.jpg');
+            margin-left: -15px;
+            margin-right: -17px;
             background-size: cover;
             background-position: center;
             color: #ffffff;
-            padding: 4rem 2rem;
+            padding: 14rem 10rem;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
@@ -43,16 +65,16 @@
         }
 
         .jumbotron .btn-primary {
-            background-color: #007bff;
+            background-color: transparent;
             border-color: #007bff;
-            font-size: 1.5rem;
-            padding: 1rem 2rem;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
             margin-top: 2rem;
         }
 
         .jumbotron .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+            background-color: #111;
+            border-color: #ffffff;
         }
 
         .section {
@@ -122,6 +144,42 @@
             object-fit: cover;
         }
 
+        .testimonials {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .testimonial-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+
         footer {
             background-color: #343a40;
             color: #ffffff;
@@ -145,16 +203,18 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">EventHubPokhara</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <li class="nav-item">
                         <!-- Example of conditional rendering for auth state -->
@@ -171,8 +231,10 @@
         <div class="jumbotron">
             <div class="container">
                 <h1 class="display-4 animate__animated animate__fadeInDown">Welcome to EventHubPokhara!</h1>
-                <p class="lead animate__animated animate__fadeInUp">Discover and book tickets to your favorite events in Pokhara.</p>
-                <a class="btn btn-primary btn-lg animate__animated animate__fadeInUp" href="events.html" role="button">Browse Events</a>
+                <p class="lead animate__animated animate__fadeInUp">Discover and book tickets to your favorite events
+                    in Pokhara.</p>
+                <a class="btn btn-primary btn-lg animate__animated animate__fadeInUp" href="events.html"
+                    role="button">Browse Events</a>
             </div>
         </div>
 
@@ -182,14 +244,26 @@
                 <h2 class="section-title mb-4 animate__animated animate__fadeIn">About Us</h2>
                 <div class="row">
                     <div class="col-md-6 animate__animated animate__fadeInLeft">
-                        <h4>Who We Are</h4>
-                        <p>We are EventHubPokhara, dedicated to curating and showcasing the best events happening in Pokhara. From concerts to workshops, we connect you with unforgettable experiences. Our team is passionate about bringing the community together through diverse events that cater to all interests.</p>
-                        <p>Our platform is designed to make it easy for you to find events that you'll love. Whether you're into music, art, food, or sports, we've got something for everyone. We work closely with local event organizers to bring you the most exciting and unique events in the city.</p>
+                        <h4><strong>Who We Are</strong></h4>
+                        <p>We are EventHubPokhara, dedicated to curating and showcasing the best events happening in
+                            Pokhara. From concerts to workshops, we connect you with unforgettable experiences. Our
+                            team is passionate about bringing the community together through diverse events that cater
+                            to all interests.</p>
+                        <p>Our platform is designed to make it easy for you to find events that you'll love. Whether
+                            you're into music, art, food, or sports, we've got something for everyone. We work closely
+                            with local event organizers to bring you the most exciting and unique events in the city.
+                        </p>
                     </div>
                     <div class="col-md-6 animate__animated animate__fadeInRight">
-                        <h4>Our Mission</h4>
-                        <p>Our mission is to make event booking seamless and enjoyable. We aim to support local artists and event organizers, creating a vibrant cultural scene in Pokhara. We believe that by fostering a strong sense of community through events, we can contribute to the cultural and social enrichment of our city.</p>
-                        <p>At EventHubPokhara, we are committed to providing excellent customer service and a smooth booking experience. Our user-friendly platform allows you to browse, book, and enjoy events with ease. Join us in supporting local talent and making Pokhara a hub of creativity and excitement.</p>
+                        <h4><strong>Our Mission</strong></h4>
+                        <p>Our mission is to make event booking seamless and enjoyable. We aim to support local artists
+                            and event organizers, creating a vibrant cultural scene in Pokhara. We believe that by
+                            fostering a strong sense of community through events, we can contribute to the cultural and
+                            social enrichment of our city.</p>
+                        <p>At EventHubPokhara, we are committed to providing excellent customer service and a smooth
+                            booking experience. Our user-friendly platform allows you to browse, book, and enjoy events
+                            with ease. Join us in supporting local talent and making Pokhara a hub of creativity and
+                            excitement.</p>
                     </div>
                 </div>
             </div>
@@ -205,7 +279,8 @@
                             <div class="card-body text-center">
                                 <i class="fas fa-calendar-check feature-icon"></i>
                                 <h3 class="feature-title mt-3">Easy Booking</h3>
-                                <p class="feature-description">Book your tickets hassle-free with our user-friendly interface.</p>
+                                <p class="feature-description">Book your tickets hassle-free with our user-friendly
+                                    interface.</p>
                             </div>
                         </div>
                     </div>
@@ -221,9 +296,10 @@
                     <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body text-center">
-                                <i class="fas fa-handshake feature-icon"></i>
+                                <i class="fas fa-users feature-icon"></i>
                                 <h3 class="feature-title mt-3">Community Focused</h3>
-                                <p class="feature-description">Support local artists and organizers by attending their events.</p>
+                                <p class="feature-description">Support local artists and organizers by attending their
+                                    events.</p>
                             </div>
                         </div>
                     </div>
@@ -258,7 +334,7 @@
                     </div>
                     <div class="col-md-4 animate__animated animate__fadeInRight">
                         <div class="card event-card border-0 shadow-sm">
-                            <img src="event2.jpg" class="card-img-top" alt="Event 2">
+                            <img src="event3.jpg" class="card-img-top" alt="Event 3">
                             <div class="card-body">
                                 <h5 class="card-title">Art Exhibition</h5>
                                 <p class="card-text">10/03/2024 | Art Gallery</p>
@@ -268,7 +344,7 @@
                     </div>
                     <div class="col-md-4 animate__animated animate__fadeInRight">
                         <div class="card event-card border-0 shadow-sm">
-                            <img src="event3.jpg" class="card-img-top" alt="Event 3">
+                            <img src="event4.jpg" class="card-img-top" alt="Event 4">
                             <div class="card-body">
                                 <h5 class="card-title">Food Carnival</h5>
                                 <p class="card-text">20/04/2024 | City Park</p>
@@ -280,12 +356,43 @@
                 </div>
             </div>
         </div>
+
+        <!-- Testimonials Section -->
+        <div class="testimonials">
+            <div class="container">
+                <h2 class="testimonial-title animate__animated animate__fadeIn">Testimonials</h2>
+                <div class="row">
+                    <div class="col-md-4 animate__animated animate__fadeInLeft">
+                        <div class="testimonial-card border-0 shadow-sm">
+                            <p class="testimonial-text">"EventHubPokhara helped me discover amazing events that I
+                                wouldn't have known about otherwise. Great service!"</p>
+                            <p class="testimonial-author">Jane Doe</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="testimonial-card border-0 shadow-sm">
+                            <p class="testimonial-text">"Attending events through EventHubPokhara has been a
+                                delightful experience. Highly recommended!"</p>
+                            <p class="testimonial-author">John Smith</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInRight">
+                        <div class="testimonial-card border-0 shadow-sm">
+                            <p class="testimonial-text">"The variety of events available on EventHubPokhara is
+                                impressive. It's my go-to platform for all event bookings."</p>
+                            <p class="testimonial-author">Emily Brown</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
     <footer class="text-center">
         <div class="container">
-            <p>&copy; 2024 EventHubPokhara. All rights reserved. | Designed by <a href="#" target="_blank">Your Name</a></p>
+            <p>&copy; 2024 EventHubPokhara. All rights reserved. | Designed by <a href="#"
+                    target="_blank">Your Name</a></p>
         </div>
     </footer>
 
