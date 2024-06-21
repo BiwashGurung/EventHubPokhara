@@ -471,102 +471,108 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script> 
-   $(document).ready(function () {
-    // Show modal to enter username and upload photo
-    $('#userModal').modal('show');
+  $(document).ready(function () {
 
-    $(document).ready(function () {
-    // Handle file input change for image preview
-    $('#userImageInput').change(function () {
-        var input = this;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#userImagePreview').attr('src', e.target.result);
-                $('#userImagePreview').removeClass('d-none'); // Show image preview
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    });
+// Function to check if user details exist in local storage
+function checkUserDetails() {
+    var username = localStorage.getItem('username');
+    var userImage = localStorage.getItem('userImage');
+    
+    if (username && userImage) {
+        // User details exist, set them in the UI
+        $('#userName').text(username);
+        $('#userNameDisplay').text(username);
+        $('#userImage').attr('src', userImage);
+        $('#userImageContainer').show();
+        $('#logoutBtn').show();
+    } else {
+        // User details do not exist, show the user modal
+        $('#userModal').modal('show');
+    }
+}
 
-    // Clear image preview when modal is closed
-    $('#userModal').on('hidden.bs.modal', function () {
-        $('#userImagePreview').addClass('d-none'); // Hide image preview
-        $('#userImagePreview').attr('src', ''); // Clear preview image source
-    });
+// Check if user details exist when the page loads
+checkUserDetails();
 
-    // Save button click event
-    $('#saveUserBtn').click(function () {
-        var username = $('#usernameInput').val();
-        var userImageFile = $('#userImageInput')[0].files[0];
-
-        // Validate username and image
-        if (!username.trim()) {
-            $('#usernameInput').addClass('is-invalid');
-            $('#usernameInput').siblings('.invalid-feedback').text('Please enter your username.');
-            return; // Prevent further execution
-        } else {
-            $('#usernameInput').removeClass('is-invalid');
-            $('#usernameInput').siblings('.invalid-feedback').text('');
-        }
-
-        if (!userImageFile) {
-            $('#userImageInput').addClass('is-invalid');
-            $('#userImageInput').siblings('.custom-file-label').addClass('selected').html('Choose file...');
-            $('#userImageInput').siblings('.invalid-feedback').text('Please choose an image.');
-            return; // Prevent further execution
-        } else {
-            $('#userImageInput').removeClass('is-invalid');
-            $('#userImageInput').siblings('.custom-file-label').addClass('selected').html(userImageFile.name);
-            $('#userImageInput').siblings('.invalid-feedback').text('');
-        }
-
-        // Process further actions if everything is valid
+// Handle file input change for image preview
+$('#userImageInput').change(function () {
+    var input = this;
+    if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#userName').text(username);
-            $('#userNameDisplay').text(username);
-            $('#userImage').attr('src', e.target.result);
-            $('#userImageContainer').show();
-            $('#logoutBtn').show();
-            $('#userModal').modal('hide');
+            $('#userImagePreview').attr('src', e.target.result);
+            $('#userImagePreview').removeClass('d-none'); // Show image preview
         };
-        reader.readAsDataURL(userImageFile);
-    });
+        reader.readAsDataURL(input.files[0]);
+    }
 });
 
+// Clear image preview when modal is closed
+$('#userModal').on('hidden.bs.modal', function () {
+    $('#userImagePreview').addClass('d-none'); // Hide image preview
+    $('#userImagePreview').attr('src', ''); // Clear preview image source
+});
 
+// Save button click event
+$('#saveUserBtn').click(function () {
+    var username = $('#usernameInput').val();
+    var userImageFile = $('#userImageInput')[0].files[0];
 
-    // Owl Carousel initialization
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 1
-            },
-            1000: {
-                items: 2
-            }
-        }
-    });
+    // Validate username and image
+    if (!username.trim()) {
+        $('#usernameInput').addClass('is-invalid');
+        $('#usernameInput').siblings('.invalid-feedback').text('Please enter your username.');
+        return; // Prevent further execution
+    } else {
+        $('#usernameInput').removeClass('is-invalid');
+        $('#usernameInput').siblings('.invalid-feedback').text('');
+    }
 
-    // Logout button click event
-    $('#logoutBtn').click(function () {
-        // Display username in the modal
-        $('#logoutUsername').text($('#userName').text());
-        // Show the logout confirmation modal
-        $('#logoutModal').modal('show');
-    });
+    if (!userImageFile) {
+        $('#userImageInput').addClass('is-invalid');
+        $('#userImageInput').siblings('.custom-file-label').addClass('selected').html('Choose file...');
+        $('#userImageInput').siblings('.invalid-feedback').text('Please choose an image.');
+        return; // Prevent further execution
+    } else {
+        $('#userImageInput').removeClass('is-invalid');
+        $('#userImageInput').siblings('.custom-file-label').addClass('selected').html(userImageFile.name);
+        $('#userImageInput').siblings('.invalid-feedback').text('');
+    }
 
-    // Confirm logout button click event
+    // Process further actions if everything is valid
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        // Store user details in local storage
+        localStorage.setItem('username', username);
+        localStorage.setItem('userImage', e.target.result);
+
+        // Set user details in the UI
+        $('#userName').text(username);
+        $('#userNameDisplay').text(username);
+        $('#userImage').attr('src', e.target.result);
+        $('#userImageContainer').show();
+        $('#logoutBtn').show();
+        $('#userModal').modal('hide');
+    };
+    reader.readAsDataURL(userImageFile);
+});
+
+// Logout button click event
+$('#logoutBtn').click(function () {
+    // Display username in the modal
+    $('#logoutUsername').text($('#userName').text());
+    // Show the logout confirmation modal
+    $('#logoutModal').modal('show');
+});
+
+// Confirm logout button click event
 $('#confirmLogoutBtn').click(function () {
     var username = $('#userName').text();
-    
+
+    // Remove user details from local storage
+    localStorage.removeItem('username');
+    localStorage.removeItem('userImage');
+
     // Display a Bootstrap modal for logout confirmation
     $('#logoutModal').modal('hide'); // Hide the confirmation modal first
     var logoutConfirmationModal = `
@@ -589,23 +595,42 @@ $('#confirmLogoutBtn').click(function () {
             </div>
         </div>
     `;
-    
+
     // Append the modal HTML to the body and show it
     $('body').append(logoutConfirmationModal);
     $('#logoutConfirmationModal').modal('show');
-    
+
     // Optional: Remove the modal from DOM when it's closed
     $('#logoutConfirmationModal').on('hidden.bs.modal', function () {
         $(this).remove();
     });
-    
+
     // Redirect to homepage after logout
     setTimeout(function () {
         window.location.href = 'index.html';
     }, 3000); // Redirect after 3 seconds (adjust as needed)
 });
 
+// Owl Carousel initialization
+$('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 1
+        },
+        1000: {
+            items: 2
+        }
+    }
 });
+
+});
+
 
 
 
