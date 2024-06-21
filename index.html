@@ -250,7 +250,7 @@
                         <li class="nav-item" id="userImageContainer" style="display: none;">
                             <div class="d-flex align-items-center">
                                 <img src="" id="userImage" alt="User Image" class="rounded-circle" width="30" height="30">
-                                <a class="nav-link ml-2" href="#" id="userName"></a>
+                                <a class="nav-link" href="#" id="userName"></a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -269,7 +269,11 @@
         <!-- Hero Section -->
         <div class="jumbotron">
             <div class="container">
-                <h1 class="display-4 animate__animated animate__fadeInDown">Welcome to EventHubPokhara!</h1>
+                <h1 class="display-4 animate__animated animate__fadeInDown">
+                    <span id="welcomeMessage">Namaste <span id="userNameDisplay"></span>! Welcome to EventHubPokhara!</span>
+                </h1>
+                
+                
                 <p class="lead animate__animated animate__fadeInUp">Discover and book tickets to your favorite events
                     in Pokhara.</p>
                 <a class="btn btn-primary btn-lg animate__animated animate__fadeInUp" href="events.html"
@@ -439,54 +443,62 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Show modal to enter username and upload photo
-            $('#userModal').modal('show');
+    <script> 
+    $(document).ready(function () {
+    // Show modal to enter username and upload photo
+    $('#userModal').modal('show');
 
-            // Handle the save button click
-            $('#saveUserBtn').click(function () {
-                var username = $('#usernameInput').val();
-                var userImageFile = $('#userImageInput')[0].files[0];
-                if (username && userImageFile) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('#userName').text(username);
-                        $('#userImage').attr('src', e.target.result);
-                        $('#userImageContainer').show();
-                        $('#logoutBtn').show();
-                        $('#userModal').modal('hide');
-                    };
-                    reader.readAsDataURL(userImageFile);
-                } else {
-                    alert('Please enter a username and upload a photo.');
-                }
-            });
+    // Handle the save button click
+    $('#saveUserBtn').click(function () {
+        var username = $('#usernameInput').val();
+        var userImageFile = $('#userImageInput')[0].files[0];
+        if (username && userImageFile) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#userName').text(username);
+                $('#userNameDisplay').text(username);
+                $('#userImage').attr('src', e.target.result);
+                $('#userImageContainer').show();
+                $('#logoutBtn').show();
+                $('#userModal').modal('hide');
+            };
+            reader.readAsDataURL(userImageFile);
+        } else {
+            alert('Please enter a username and upload a photo.');
+        }
+    });
 
-            // Owl Carousel initialization
-            $('.owl-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 1
-                    },
-                    1000: {
-                        items: 2
-                    }
-                }
-            });
+    // Owl Carousel initialization
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            1000: {
+                items: 2
+            }
+        }
+    });
 
-            // Logout button click event
-            $('#logoutBtn').click(function () {
-                alert('You have logged out successfully, ' + $('#userName').text() + '.');
-                window.location.href = 'index.html'; // Redirect to homepage
-            });
-        });
+    // Logout button click event
+    $('#logoutBtn').click(function () {
+        // Show confirmation dialog
+        if (confirm('Are you sure you want to logout?')) {
+            // Perform logout action
+            alert('You have logged out successfully, ' + $('#userName').text() + '.');
+            window.location.href = 'index.html'; // Redirect to homepage
+        }
+    });
+});
+
+
+
     </script>
 </body>
 
