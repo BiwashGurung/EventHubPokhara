@@ -9,24 +9,82 @@
         body {
             font-family: Arial, sans-serif;
         }
+        .navbar {
+            background-color: #343a40;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .navbar-brand:hover {
+            color: #e9ecef;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 0.75rem 1rem;
+        }
+
+        .nav-link:hover {
+            color: #e9ecef;
+        }
+
+        .nav-item.active .nav-link {
+            color: #007bff;
+            font-weight: bold;
+        }
+
         footer {
-            background-color: #f8f9fa;
-            padding: 1rem 0;
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 2rem 0;
+        }
+
+        footer p {
+            margin-bottom: 0;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">EventHubPokhara</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">EventHubPokhara</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item mr-5"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <!-- User details section -->
+                    <li class="nav-item" id="userImageContainer" style="display: none;">
+                        <div class="d-flex align-items-center">
+                            <img src="" id="userImage" alt="User Image" class="rounded-circle" width="30" height="30">
+                            <a class="nav-link" href="#" id="userName"></a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logoutBtn" style="display: none;">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -48,11 +106,13 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         </div>
-        <footer class="text-center bg-light py-4">
-            <div class="container">
-                <p>&copy; 2024 EventHubPokhara. All rights reserved.</p>
-            </div>
-        </footer>
+         <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2024 EventHubPokhara. All Rights Reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
