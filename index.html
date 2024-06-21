@@ -405,7 +405,7 @@
         </div>
     </footer>
 
- <!-- Modal for Username and Photo -->
+<!-- Modal for Username and Photo -->
 <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -420,13 +420,18 @@
                     <div class="form-group">
                         <label for="usernameInput">Username</label>
                         <input type="text" class="form-control" id="usernameInput" placeholder="Enter your username" required>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
                         <label for="userImageInput">Upload Photo</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="userImageInput" accept="image/*" required>
                             <label class="custom-file-label" for="userImageInput">Choose file...</label>
+                            <div class="invalid-feedback"></div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <img id="userImagePreview" src="#" alt="Preview" class="img-fluid d-none">
                     </div>
                 </form>
             </div>
@@ -437,6 +442,7 @@
         </div>
     </div>
 </div>
+
 <!-- Logout Confirmation Modal -->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -469,25 +475,67 @@
     // Show modal to enter username and upload photo
     $('#userModal').modal('show');
 
-    // Handle the save button click
+    $(document).ready(function () {
+    // Handle file input change for image preview
+    $('#userImageInput').change(function () {
+        var input = this;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#userImagePreview').attr('src', e.target.result);
+                $('#userImagePreview').removeClass('d-none'); // Show image preview
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
+
+    // Clear image preview when modal is closed
+    $('#userModal').on('hidden.bs.modal', function () {
+        $('#userImagePreview').addClass('d-none'); // Hide image preview
+        $('#userImagePreview').attr('src', ''); // Clear preview image source
+    });
+
+    // Save button click event
     $('#saveUserBtn').click(function () {
         var username = $('#usernameInput').val();
         var userImageFile = $('#userImageInput')[0].files[0];
-        if (username && userImageFile) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#userName').text(username);
-                $('#userNameDisplay').text(username);
-                $('#userImage').attr('src', e.target.result);
-                $('#userImageContainer').show();
-                $('#logoutBtn').show();
-                $('#userModal').modal('hide');
-            };
-            reader.readAsDataURL(userImageFile);
+
+        // Validate username and image
+        if (!username.trim()) {
+            $('#usernameInput').addClass('is-invalid');
+            $('#usernameInput').siblings('.invalid-feedback').text('Please enter your username.');
+            return; // Prevent further execution
         } else {
-            alert('Please enter a username and upload a photo.');
+            $('#usernameInput').removeClass('is-invalid');
+            $('#usernameInput').siblings('.invalid-feedback').text('');
         }
+
+        if (!userImageFile) {
+            $('#userImageInput').addClass('is-invalid');
+            $('#userImageInput').siblings('.custom-file-label').addClass('selected').html('Choose file...');
+            $('#userImageInput').siblings('.invalid-feedback').text('Please choose an image.');
+            return; // Prevent further execution
+        } else {
+            $('#userImageInput').removeClass('is-invalid');
+            $('#userImageInput').siblings('.custom-file-label').addClass('selected').html(userImageFile.name);
+            $('#userImageInput').siblings('.invalid-feedback').text('');
+        }
+
+        // Process further actions if everything is valid
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#userName').text(username);
+            $('#userNameDisplay').text(username);
+            $('#userImage').attr('src', e.target.result);
+            $('#userImageContainer').show();
+            $('#logoutBtn').show();
+            $('#userModal').modal('hide');
+        };
+        reader.readAsDataURL(userImageFile);
     });
+});
+
+
 
     // Owl Carousel initialization
     $('.owl-carousel').owlCarousel({
