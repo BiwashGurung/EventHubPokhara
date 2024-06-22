@@ -78,6 +78,8 @@
     </style>
     <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <!-- Include Khalti SDK -->
+    <script src="https://khalti.com/static/khalti-checkout.js"></script>
 </head>
 
 <body>
@@ -122,6 +124,20 @@
                 </div>
             </div>
         </div>
+        <div class="card mt-4">
+            <div class="card-body text-center">
+                <h5 class="card-title">Choose Payment Method</h5>
+                <form id="esewaForm" action="https://esewa.com.np/epay/main" method="POST" target="_blank">
+                    <input value="YOUR_ESewa_MERCHANT_ID" name="merchant_code" type="hidden">
+                    <input value="100" name="amount" type="hidden"> <!-- Amount should be dynamically set -->
+                    <input value="yourwebsite.com/success" name="return_url" type="hidden">
+                    <input value="yourwebsite.com/failure" name="failure_url" type="hidden">
+                    <input value="TXN123456" name="txn_id" type="hidden"> <!-- Transaction ID should be dynamically set -->
+                    <button type="button" id="payEsewa" class="btn btn-success m-2"><i class="fas fa-mobile-alt"></i> Pay with eSewa</button>
+                </form>
+                <button id="payKhalti" class="btn btn-info m-2"><i class="fas fa-wallet"></i> Pay with Khalti</button>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -147,6 +163,10 @@
         document.getElementById('eventDate').innerHTML = `<i class="fas fa-clock"></i> Date: ${eventDate}`;
         document.getElementById('ticketQuantity').innerHTML = `<i class="fas fa-ticket-alt"></i> Tickets: ${ticketQuantity}`;
         document.getElementById('totalPrice').innerHTML = `<i class="fas fa-dollar-sign"></i> Total Price: ${totalPrice}`;
+
+        // Update eSewa form amount and transaction ID
+        document.querySelector('#esewaForm input[name="amount"]').value = totalPrice;
+        document.querySelector('#esewaForm input[name="txn_id"]').value = generateReferenceNumber();
 
         // Generate random reference number
         const referenceNumber = generateReferenceNumber();
@@ -186,6 +206,38 @@
                 alert('Email confirmation sent to ' + email);
             }
         });
+
+        // eSewa payment integration
+        document.getElementById('payEsewa').addEventListener('click', function () {
+            document.getElementById('esewaForm').submit();
+        });
+
+        // Khalti payment integration
+        var config = {
+            // replace with your public key
+            "publicKey": "test_public_key_dc74b7b2ea7b4a119f9bfb98b0a76ff3",
+            "productIdentity": referenceNumber,
+            "productName": eventTitle,
+            "productUrl": "http://eventhubpokhara.com/",
+            "eventHandler": {
+                onSuccess(payload) {
+                    // hit merchant api for initiating verification
+                    alert("Payment successful. Payment details: " + JSON.stringify(payload));
+                },
+                onError(error) {
+                    alert("Payment failed. Error: " + JSON.stringify(error));
+                },
+                onClose() {
+                    alert("Payment widget is closing.");
+                }
+            }
+        };
+
+        var checkout = new KhaltiCheckout(config);
+
+        document.getElementById("payKhalti").onclick = function () {
+            checkout.show({ amount: totalPrice * 100 }); // Amount in paisa
+        };
     </script>
 </body>
 
