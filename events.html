@@ -219,25 +219,32 @@
             var eventType = document.getElementById('eventType').value;
             var eventDate = document.getElementById('eventDate').value;
             var eventLocation = document.getElementById('eventLocation').value.toLowerCase();
-
+    
             var eventCards = document.querySelectorAll('#eventList .col-md-4');
-
+            var matchedEvents = false;
+    
             eventCards.forEach(function(card) {
                 var cardType = card.getAttribute('data-type');
                 var cardDate = card.getAttribute('data-date');
                 var cardLocation = card.getAttribute('data-location').toLowerCase();
-
+    
                 var matchesType = eventType === 'all' || cardType === eventType;
                 var matchesDate = eventDate === '' || cardDate === eventDate;
                 var matchesLocation = eventLocation === '' || cardLocation.includes(eventLocation);
-
+    
                 if (matchesType && matchesDate && matchesLocation) {
                     card.style.display = 'block';
+                    matchedEvents = true;
                 } else {
                     card.style.display = 'none';
                 }
             });
+    
+            if (!matchedEvents) {
+                alert('No events found in the specified location. Please try a different location.');
+            }
         }
     </script>
+    
 </body>
 </html>
