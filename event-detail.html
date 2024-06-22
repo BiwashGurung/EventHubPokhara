@@ -111,7 +111,7 @@
             </div>
             <div class="col-md-4">
                 <h3>Book Tickets</h3>
-                <form id="bookingForm" action="booking-confirmation.html" method="GET">
+                <form id="bookingForm">
                     <div class="form-group">
                         <label for="ticketQuantity">Number of Tickets</label>
                         <input type="number" class="form-control" id="ticketQuantity" name="ticketQuantity" min="1" value="1" required>
@@ -120,11 +120,76 @@
                         <label for="totalPrice">Total Price (NPR)</label>
                         <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="0.00" readonly>
                     </div>
-                    <button type="submit" class="btn btn-success">Book Now</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#paymentModal">Pay Now</button>
                     <!-- Hidden fields to pass event details -->
                     <input type="hidden" id="eventTitleInput" name="eventTitle">
                     <input type="hidden" id="eventDateInput" name="eventDate">
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Choose a Payment Method</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-primary btn-block" onclick="showEsewaForm()">Pay with eSewa</button>
+                    <button type="button" class="btn btn-secondary btn-block" onclick="showKhaltiForm()">Pay with Khalti</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- eSewa Payment Form -->
+<div class="modal fade" id="esewaFormModal" tabindex="-1" role="dialog" aria-labelledby="esewaFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="esewaFormModalLabel">eSewa Payment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="https://uat.esewa.com.np/epay/main" method="POST">
+                    <input type="hidden" name="amt" id="esewaAmount" value="0">
+                    <input type="hidden" name="pdc" value="0">
+                    <input type="hidden" name="psc" value="0">
+                    <input type="hidden" name="txAmt" value="0">
+                    <input type="hidden" name="tAmt" id="esewaTotalAmount" value="0">
+                    <input type="hidden" name="pid" value="1234567890">
+                    <input type="hidden" name="scd" value="EPAYTEST">
+                    <input type="hidden" name="su" value="http://merchant.com.np/page/esewa_payment_success">
+                    <input type="hidden" name="fu" value="http://merchant.com.np/page/esewa_payment_failed">
+                    <button type="submit" class="btn btn-success btn-block">Proceed to eSewa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Khalti Payment Form -->
+    <div class="modal fade" id="khaltiFormModal" tabindex="-1" role="dialog" aria-labelledby="khaltiFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="khaltiFormModalLabel">Khalti Payment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Khalti payment form should be integrated here -->
+                    <p>Integration for Khalti payment form is required here.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -258,6 +323,8 @@
             const eventPrice = document.getElementById('eventPrice').textContent.replace(/,/g, '');
             const totalPrice = ticketQuantity * eventPrice;
             document.getElementById('totalPrice').value = totalPrice.toLocaleString('en-NP', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('esewaAmount').value = totalPrice;
+            document.getElementById('esewaTotalAmount').value = totalPrice;
         }
 
         function populateCarousel(imageUrls) {
@@ -278,6 +345,16 @@
                     carouselInner.appendChild(carouselItem);
                 });
             }
+        }
+
+        function showEsewaForm() {
+            $('#paymentModal').modal('hide');
+            $('#esewaFormModal').modal('show');
+        }
+
+        function showKhaltiForm() {
+            $('#paymentModal').modal('hide');
+            $('#khaltiFormModal').modal('show');
         }
     </script>
 </body>
