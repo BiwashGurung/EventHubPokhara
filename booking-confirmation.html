@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmation - EventHubPokhara</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
         }
+
         .navbar {
             background-color: #343a40;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -40,11 +44,23 @@
 
         .card {
             margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+        }
+
         footer {
             background-color: #343a40;
             color: #ffffff;
             padding: 2rem 0;
+            margin-top: 20px;
         }
 
         footer p {
@@ -63,6 +79,7 @@
     <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -82,24 +99,33 @@
     </nav>
 
     <div class="container mt-5">
-        <div class="alert alert-success" role="alert">
-            Thank you for your booking, <strong id="userName"></strong>! Your reference number is <strong id="referenceNumber"></strong>.
+        <div class="alert alert-success text-center" role="alert">
+            <h4 class="alert-heading">Thank you for your booking, <strong id="userName"></strong>!</h4>
+            <p>Your reference number is <strong id="referenceNumber"></strong>.</p>
         </div>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Booking Summary</h5>
-                <p id="eventTitle" class="card-text">Event: </p>
-                <p id="eventDate" class="card-text">Date: </p>
-                <p id="ticketQuantity" class="card-text">Tickets: </p>
-                <p id="totalPrice" class="card-text">Total Price: </p>
-                <button id="printPdf" class="btn btn-primary">Print Confirmation (PDF)</button>
-                <button id="emailConfirmation" class="btn btn-secondary">Email Confirmation</button>
+                <h5 class="card-title text-center">Booking Summary</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p id="eventTitle" class="card-text"><i class="fas fa-calendar-alt"></i> Event: </p>
+                        <p id="eventDate" class="card-text"><i class="fas fa-clock"></i> Date: </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p id="ticketQuantity" class="card-text"><i class="fas fa-ticket-alt"></i> Tickets: </p>
+                        <p id="totalPrice" class="card-text"><i class="fas fa-dollar-sign"></i> Total Price: </p>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <button id="printPdf" class="btn btn-primary"><i class="fas fa-print"></i> Print Confirmation (PDF)</button>
+                    <button id="emailConfirmation" class="btn btn-secondary"><i class="fas fa-envelope"></i> Email Confirmation</button>
+                </div>
             </div>
         </div>
     </div>
 
-     <!-- Footer -->
-     <footer>
+    <!-- Footer -->
+    <footer>
         <div class="container text-center">
             <p>&copy; 2024 EventHubPokhara. All Rights Reserved.</p>
             <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
@@ -116,13 +142,13 @@
         const totalPrice = urlParams.get('price');
 
         // Update HTML content with booking details
-        document.getElementById('userName').textContent = userName; // Set user name
-        document.getElementById('eventTitle').textContent = `Event: ${eventTitle}`;
-        document.getElementById('eventDate').textContent = `Date: ${eventDate}`;
-        document.getElementById('ticketQuantity').textContent = `Tickets: ${ticketQuantity}`;
-        document.getElementById('totalPrice').textContent = `Total Price: ${totalPrice}`;
+        document.getElementById('userName').textContent = userName;
+        document.getElementById('eventTitle').innerHTML = `<i class="fas fa-calendar-alt"></i> Event: ${eventTitle}`;
+        document.getElementById('eventDate').innerHTML = `<i class="fas fa-clock"></i> Date: ${eventDate}`;
+        document.getElementById('ticketQuantity').innerHTML = `<i class="fas fa-ticket-alt"></i> Tickets: ${ticketQuantity}`;
+        document.getElementById('totalPrice').innerHTML = `<i class="fas fa-dollar-sign"></i> Total Price: ${totalPrice}`;
 
-        // Generate random reference number (replace with your own logic if needed)
+        // Generate random reference number
         const referenceNumber = generateReferenceNumber();
         document.getElementById('referenceNumber').textContent = referenceNumber;
 
@@ -132,11 +158,12 @@
         }
 
         // Print confirmation as PDF using jsPDF
-        document.getElementById('printPdf').addEventListener('click', function() {
+        document.getElementById('printPdf').addEventListener('click', function () {
             const doc = new jsPDF();
 
             // Define content for PDF
             const bookingSummary = `
+                Name: ${userName}
                 Event: ${eventTitle}
                 Date: ${eventDate}
                 Tickets: ${ticketQuantity}
@@ -152,7 +179,7 @@
         });
 
         // Email confirmation function (example action)
-        document.getElementById('emailConfirmation').addEventListener('click', function() {
+        document.getElementById('emailConfirmation').addEventListener('click', function () {
             const email = prompt('Please enter your email address:');
             if (email) {
                 // Here you can implement sending an email confirmation (e.g., using a backend service)
@@ -161,4 +188,5 @@
         });
     </script>
 </body>
+
 </html>
