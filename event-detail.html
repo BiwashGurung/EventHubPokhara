@@ -174,10 +174,10 @@
                 case 'Rock Concert':
                     document.getElementById('eventDescription').textContent = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
                     break;
-                case 'Art Exhibition':
+                case 'Art Exhibition 2024':
                     document.getElementById('eventDescription').textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
                     break;
-                case 'Tech Conference':
+                case 'Tech Summit 2024':
                     document.getElementById('eventDescription').textContent = 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
                     break;
                 default:
@@ -208,10 +208,10 @@
                 case 'Rock Concert':
                     populateCarousel(['https://via.placeholder.com/800x600']);
                     break;
-                case 'Art Exhibition':
+                case 'Art Exhibition 2024':
                     populateCarousel(['https://via.placeholder.com/800x600']);
                     break;
-                case 'Tech Conference':
+                case 'Tech Summit 2024':
                     populateCarousel(['https://via.placeholder.com/800x600']);
                     break;
                 default:
@@ -220,51 +220,56 @@
             }
         });
 
-        function populateCarousel(imageUrls) {
-            const carouselInner = document.querySelector('#eventGallery .carousel-inner');
-            carouselInner.innerHTML = '';
-
-            imageUrls.forEach((url, index) => {
-                const itemClass = index === 0 ? 'carousel-item active' : 'carousel-item';
-                const imageElement = `
-                    <div class="${itemClass}">
-                        <img src="${url}" class="d-block w-100" alt="Event Image ${index + 1}">
-                    </div>
-                `;
-                carouselInner.innerHTML += imageElement;
-            });
-        }
-
         function getPriceForEvent(eventTitle) {
             switch (eventTitle) {
                 case 'Concert XYZ':
-                    return 1500; // Replace with actual price in NPR
+                    return 500;
                 case 'Theater ABC':
-                    return 1200; // Replace with actual price in NPR
+                    return 300;
                 case 'Workshop 123':
-                    return 800; // Replace with actual price in NPR
+                    return 700;
                 case 'Live Music Festival':
-                    return 2000; // Replace with actual price in NPR
+                    return 1200;
                 case 'Drama Night':
-                    return 1000; // Replace with actual price in NPR
+                    return 800;
                 case 'Creative Arts Workshop':
-                    return 600; // Replace with actual price in NPR
+                    return 600;
                 case 'Rock Concert':
-                    return 1800; // Replace with actual price in NPR
-                case 'Art Exhibition':
-                    return 500; // Replace with actual price in NPR
-                case 'Tech Conference':
-                    return 2500; // Replace with actual price in NPR
+                    return 1000;
+                case 'Art Exhibition 2024':
+                    return 1500;
+                case 'Tech Summit 2024':
+                    return 2000;
                 default:
-                    return 0; // Default price or handle as needed
+                    return 0;
             }
         }
 
         function calculateTotalPrice() {
             const ticketQuantity = document.getElementById('ticketQuantity').value;
-            const eventPrice = parseFloat(getPriceForEvent(document.getElementById('eventTitleInput').value));
+            const eventPrice = document.getElementById('eventPrice').textContent.replace(/,/g, '');
             const totalPrice = ticketQuantity * eventPrice;
             document.getElementById('totalPrice').value = totalPrice.toLocaleString('en-NP');
+        }
+
+        function populateCarousel(imageUrls) {
+            const carouselInner = document.querySelector('.carousel-inner');
+            carouselInner.innerHTML = '';
+
+            if (imageUrls.length === 0) {
+                const defaultImage = document.createElement('div');
+                defaultImage.classList.add('carousel-item', 'active');
+                defaultImage.innerHTML = '<img src="https://via.placeholder.com/800x600" class="d-block w-100" alt="Default Image">';
+                carouselInner.appendChild(defaultImage);
+            } else {
+                imageUrls.forEach((url, index) => {
+                    const carouselItem = document.createElement('div');
+                    carouselItem.classList.add('carousel-item');
+                    if (index === 0) carouselItem.classList.add('active');
+                    carouselItem.innerHTML = `<img src="${url}" class="d-block w-100" alt="Event Image ${index + 1}">`;
+                    carouselInner.appendChild(carouselItem);
+                });
+            }
         }
     </script>
 </body>
