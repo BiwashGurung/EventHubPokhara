@@ -10,6 +10,7 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .navbar {
             background-color: #343a40;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -39,7 +40,6 @@
             font-weight: bold;
         }
 
-
         .card {
             margin-bottom: 20px;
         }
@@ -62,7 +62,6 @@
         footer a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 
@@ -70,8 +69,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">EventHubPokhara</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -105,10 +103,10 @@
                     <div class="form-group">
                         <label for="eventType">Event Type</label>
                         <select class="form-control" id="eventType">
-                            <option>All</option>
-                            <option>Concert</option>
-                            <option>Theater</option>
-                            <option>Workshop</option>
+                            <option value="all">All</option>
+                            <option value="concert">Concert</option>
+                            <option value="theater">Theater</option>
+                            <option value="workshop">Workshop</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -119,18 +117,38 @@
                         <label for="eventLocation">Location</label>
                         <input type="text" class="form-control" id="eventLocation">
                     </div>
-                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <button type="button" class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
                 </form>
             </div>
             <div class="col-md-9">
                 <div class="row" id="eventList">
-                    <!-- Example Event Card -->
-                    <div class="col-md-4">
+                    <!-- Example Event Cards with categories -->
+                    <div class="col-md-4" data-type="concert">
                         <div class="card">
-                            <img src="event-image.jpg" class="card-img-top" alt="Event Image">
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Concert Image">
                             <div class="card-body">
                                 <h5 class="card-title">Concert XYZ</h5>
                                 <p class="card-text">01/01/2024 | Pokhara Stadium</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-type="theater">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Theater Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Theater ABC</h5>
+                                <p class="card-text">05/02/2024 | Pokhara Hall</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-type="workshop">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Workshop Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Workshop 123</h5>
+                                <p class="card-text">15/03/2024 | Pokhara Community Center</p>
                                 <a href="event-detail.html" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
@@ -153,8 +171,8 @@
         </div>
     </div>
 
-     <!-- Footer -->
-     <footer>
+    <!-- Footer -->
+    <footer>
         <div class="container text-center">
             <p>&copy; 2024 EventHubPokhara. All Rights Reserved.</p>
             <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
@@ -163,6 +181,20 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function applyFilters() {
+            const eventType = document.getElementById('eventType').value.toLowerCase();
+            const eventCards = document.querySelectorAll('#eventList .col-md-4');
+
+            eventCards.forEach(card => {
+                if (eventType === 'all' || card.getAttribute('data-type') === eventType) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
