@@ -127,12 +127,16 @@
         <div class="card mt-4">
             <div class="card-body text-center">
                 <h5 class="card-title">Choose Payment Method</h5>
-                <form id="esewaForm" action="https://esewa.com.np/epay/main" method="POST" target="_blank">
-                    <input value="YOUR_ESewa_MERCHANT_ID" name="merchant_code" type="hidden">
-                    <input value="100" name="amount" type="hidden"> <!-- Amount should be dynamically set -->
-                    <input value="yourwebsite.com/success" name="return_url" type="hidden">
-                    <input value="yourwebsite.com/failure" name="failure_url" type="hidden">
-                    <input value="TXN123456" name="txn_id" type="hidden"> <!-- Transaction ID should be dynamically set -->
+                <form id="esewaForm" action="https://uat.esewa.com.np/epay/main" method="POST" target="_blank">
+                    <input type="hidden" name="amt" id="esewaAmt">
+                    <input type="hidden" name="pdc" value="0">
+                    <input type="hidden" name="psc" value="0">
+                    <input type="hidden" name="txAmt" value="0">
+                    <input type="hidden" name="tAmt" id="esewaTotalAmt">
+                    <input type="hidden" name="pid" id="esewaPid">
+                    <input type="hidden" name="scd" value="EPAYTEST">
+                    <input type="hidden" name="su" value="http://merchant.com.np/page/esewa_payment_success?q=su">
+                    <input type="hidden" name="fu" value="http://merchant.com.np/page/esewa_payment_failed?q=fu">
                     <button type="button" id="payEsewa" class="btn btn-success m-2"><i class="fas fa-mobile-alt"></i> Pay with eSewa</button>
                 </form>
                 <button id="payKhalti" class="btn btn-info m-2"><i class="fas fa-wallet"></i> Pay with Khalti</button>
@@ -163,10 +167,6 @@
         document.getElementById('eventDate').innerHTML = `<i class="fas fa-clock"></i> Date: ${eventDate}`;
         document.getElementById('ticketQuantity').innerHTML = `<i class="fas fa-ticket-alt"></i> Tickets: ${ticketQuantity}`;
         document.getElementById('totalPrice').innerHTML = `<i class="fas fa-dollar-sign"></i> Total Price: ${totalPrice}`;
-
-        // Update eSewa form amount and transaction ID
-        document.querySelector('#esewaForm input[name="amount"]').value = totalPrice;
-        document.querySelector('#esewaForm input[name="txn_id"]').value = generateReferenceNumber();
 
         // Generate random reference number
         const referenceNumber = generateReferenceNumber();
@@ -209,6 +209,9 @@
 
         // eSewa payment integration
         document.getElementById('payEsewa').addEventListener('click', function () {
+            document.getElementById('esewaAmt').value = totalPrice;
+            document.getElementById('esewaTotalAmt').value = totalPrice;
+            document.getElementById('esewaPid').value = referenceNumber;
             document.getElementById('esewaForm').submit();
         });
 
