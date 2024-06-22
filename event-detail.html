@@ -120,7 +120,6 @@
                         <label for="totalPrice">Total Price (NPR)</label>
                         <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="0.00" readonly>
                     </div>
-                    <!-- <button type="button" onclick="calculateTotalPrice()" class="btn btn-primary">Calculate Total</button> -->
                     <button type="submit" class="btn btn-success">Book Now</button>
                     <!-- Hidden fields to pass event details -->
                     <input type="hidden" id="eventTitleInput" name="eventTitle">
@@ -130,8 +129,11 @@
         </div>
     </div>
 
-    <footer class="text-center mt-5">
-        <p>&copy; 2024 EventHubPokhara. All rights reserved. | Designed by <a href="https://www.example.com" target="_blank">Your Company</a></p>
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2024 EventHubPokhara. All Rights Reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -154,65 +156,65 @@
 
             switch (eventTitle) {
                 case 'Concert XYZ':
-                    document.getElementById('eventDescription').textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+                    document.getElementById('eventDescription').textContent = 'Join us for an electrifying night with Concert XYZ. Enjoy live performances by top artists and experience an unforgettable musical journey. Get ready to dance and sing along to your favorite tunes!';
                     break;
                 case 'Theater ABC':
-                    document.getElementById('eventDescription').textContent = 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+                    document.getElementById('eventDescription').textContent = 'Theater ABC presents a captivating play that explores deep human emotions and relationships. Witness stunning performances by renowned actors and be immersed in a world of drama and intrigue.';
                     break;
                 case 'Workshop 123':
-                    document.getElementById('eventDescription').textContent = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+                    document.getElementById('eventDescription').textContent = 'Enhance your skills at Workshop 123. Led by industry experts, this workshop offers hands-on training and valuable insights. Whether you are a beginner or a professional, there\'s something for everyone.';
                     break;
                 case 'Live Music Festival':
-                    document.getElementById('eventDescription').textContent = 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
+                    document.getElementById('eventDescription').textContent = 'Experience the thrill of live music at the Live Music Festival. Featuring a lineup of diverse artists, this festival promises a day of fun, excitement, and amazing performances. Bring your friends and enjoy the music!';
                     break;
                 case 'Drama Night':
-                    document.getElementById('eventDescription').textContent = 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+                    document.getElementById('eventDescription').textContent = 'Drama Night showcases a powerful performance that delves into compelling narratives and striking characters. This event is a must-see for theater enthusiasts and anyone who appreciates great storytelling.';
                     break;
                 case 'Creative Arts Workshop':
-                    document.getElementById('eventDescription').textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+                    document.getElementById('eventDescription').textContent = 'Unleash your creativity at the Creative Arts Workshop. This workshop offers a variety of art forms, from painting to sculpture, and provides a space for artists to explore and develop their artistic talents.';
                     break;
                 case 'Rock Concert':
-                    document.getElementById('eventDescription').textContent = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+                    document.getElementById('eventDescription').textContent = 'Get ready to rock at the Rock Concert! Featuring high-energy performances by top rock bands, this concert is a haven for rock music lovers. Come and enjoy a night filled with powerful music and great vibes.';
                     break;
                 case 'Art Exhibition 2024':
-                    document.getElementById('eventDescription').textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+                    document.getElementById('eventDescription').textContent = 'Art Exhibition 2024 showcases stunning artworks by local and international artists. Explore a diverse collection of paintings, sculptures, and installations, and be inspired by the creativity on display.';
                     break;
                 case 'Tech Summit 2024':
-                    document.getElementById('eventDescription').textContent = 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+                    document.getElementById('eventDescription').textContent = 'Tech Summit 2024 brings together leading minds in technology to discuss the latest trends and innovations. Attend insightful sessions, network with industry professionals, and discover new opportunities in the tech world.';
                     break;
                 default:
-                    document.getElementById('eventDescription').textContent = '';
+                    document.getElementById('eventDescription').textContent = 'Join us for an exciting event that promises to be both entertaining and informative. Stay tuned for more details.';
                     break;
             }
 
             // Populate carousel images dynamically based on event title
             switch (eventTitle) {
                 case 'Concert XYZ':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    populateCarousel(['https://via.placeholder.com/800x600/0000FF/808080?text=Concert+XYZ']);
                     break;
                 case 'Theater ABC':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    populateCarousel(['https://via.placeholder.com/800x600/FF0000/FFFFFF?text=Theater+ABC']);
                     break;
                 case 'Workshop 123':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    populateCarousel(['https://via.placeholder.com/800x600/00FF00/000000?text=Workshop+123']);
                     break;
                 case 'Live Music Festival':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    populateCarousel(['https://via.placeholder.com/800x600/FFFF00/000000?text=Live+Music+Festival']);
                     break;
                 case 'Drama Night':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    populateCarousel(['https://via.placeholder.com/800x600/FF00FF/FFFFFF?text=Drama+Night']);
                     break;
                 case 'Creative Arts Workshop':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    populateCarousel(['https://via.placeholder.com/800x600/00FFFF/000000?text=Creative+Arts+Workshop']);
                     break;
                 case 'Rock Concert':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    populateCarousel(['https://via.placeholder.com/800x600/FFA500/FFFFFF?text=Rock+Concert']);
                     break;
                 case 'Art Exhibition 2024':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    populateCarousel(['https://via.placeholder.com/800x600/800080/FFFFFF?text=Art+Exhibition+2024']);
                     break;
                 case 'Tech Summit 2024':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    populateCarousel(['https://via.placeholder.com/800x600/008000/FFFFFF?text=Tech+Summit+2024']);
                     break;
                 default:
                     populateCarousel([]);
