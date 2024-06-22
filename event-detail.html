@@ -159,7 +159,27 @@
                 case 'Theater ABC':
                     document.getElementById('eventDescription').textContent = 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
                     break;
-                // Add cases for other events as needed
+                case 'Workshop 123':
+                    document.getElementById('eventDescription').textContent = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+                    break;
+                case 'Live Music Festival':
+                    document.getElementById('eventDescription').textContent = 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
+                    break;
+                case 'Drama Night':
+                    document.getElementById('eventDescription').textContent = 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+                    break;
+                case 'Creative Arts Workshop':
+                    document.getElementById('eventDescription').textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+                    break;
+                case 'Rock Concert':
+                    document.getElementById('eventDescription').textContent = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+                    break;
+                case 'Art Exhibition':
+                    document.getElementById('eventDescription').textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+                    break;
+                case 'Tech Conference':
+                    document.getElementById('eventDescription').textContent = 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+                    break;
                 default:
                     document.getElementById('eventDescription').textContent = '';
                     break;
@@ -173,25 +193,32 @@
                 case 'Theater ABC':
                     populateCarousel(['https://via.placeholder.com/800x600']);
                     break;
-                // Add cases for other events as needed
+                case 'Workshop 123':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Live Music Festival':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Drama Night':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Creative Arts Workshop':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Rock Concert':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Art Exhibition':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Tech Conference':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
                 default:
                     populateCarousel([]);
                     break;
             }
         });
-
-        function getPriceForEvent(eventTitle) {
-            // Function to return price based on event title (dummy implementation)
-            switch (eventTitle) {
-                case 'Concert XYZ':
-                    return 1500; // Example price in NPR
-                case 'Theater ABC':
-                    return 1200; // Example price in NPR
-                // Add cases for other events as needed
-                default:
-                    return 0;
-            }
-        }
 
         function populateCarousel(imageUrls) {
             const carouselInner = document.querySelector('#eventGallery .carousel-inner');
@@ -208,9 +235,34 @@
             });
         }
 
+        function getPriceForEvent(eventTitle) {
+            switch (eventTitle) {
+                case 'Concert XYZ':
+                    return 1500; // Replace with actual price in NPR
+                case 'Theater ABC':
+                    return 1200; // Replace with actual price in NPR
+                case 'Workshop 123':
+                    return 800; // Replace with actual price in NPR
+                case 'Live Music Festival':
+                    return 2000; // Replace with actual price in NPR
+                case 'Drama Night':
+                    return 1000; // Replace with actual price in NPR
+                case 'Creative Arts Workshop':
+                    return 600; // Replace with actual price in NPR
+                case 'Rock Concert':
+                    return 1800; // Replace with actual price in NPR
+                case 'Art Exhibition':
+                    return 500; // Replace with actual price in NPR
+                case 'Tech Conference':
+                    return 2500; // Replace with actual price in NPR
+                default:
+                    return 0; // Default price or handle as needed
+            }
+        }
+
         function calculateTotalPrice() {
             const ticketQuantity = document.getElementById('ticketQuantity').value;
-            const eventPrice = getPriceForEvent(document.getElementById('eventTitleInput').value);
+            const eventPrice = parseFloat(getPriceForEvent(document.getElementById('eventTitleInput').value));
             const totalPrice = ticketQuantity * eventPrice;
             document.getElementById('totalPrice').value = totalPrice.toLocaleString('en-NP');
         }
