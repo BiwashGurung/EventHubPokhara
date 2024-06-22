@@ -73,21 +73,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item "><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item active"><a class="nav-link" href="events.html">Events</a></li>
                     <li class="nav-item mr-5"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <!-- User details section -->
-                    <li class="nav-item" id="userImageContainer" style="display: none;">
-                        <div class="d-flex align-items-center">
-                            <img src="" id="userImage" alt="User Image" class="rounded-circle" width="30" height="30">
-                            <a class="nav-link" href="#" id="userName"></a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="logoutBtn" style="display: none;">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -95,7 +83,7 @@
 
     <div class="container mt-5">
         <div class="alert alert-success" role="alert">
-            Thank you for your booking! Your reference number is <strong id="referenceNumber"></strong>.
+            Thank you for your booking, <strong id="userName"></strong>! Your reference number is <strong id="referenceNumber"></strong>.
         </div>
         <div class="card">
             <div class="card-body">
@@ -121,12 +109,14 @@
     <script>
         // Retrieve booking details from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
-        const eventTitle = urlParams.get('eventTitle');
-        const eventDate = urlParams.get('eventDate');
-        const ticketQuantity = urlParams.get('ticketQuantity');
-        const totalPrice = urlParams.get('totalPrice');
+        const userName = urlParams.get('userName');
+        const eventTitle = urlParams.get('title');
+        const eventDate = urlParams.get('date');
+        const ticketQuantity = urlParams.get('quantity');
+        const totalPrice = urlParams.get('price');
 
         // Update HTML content with booking details
+        document.getElementById('userName').textContent = userName; // Set user name
         document.getElementById('eventTitle').textContent = `Event: ${eventTitle}`;
         document.getElementById('eventDate').textContent = `Date: ${eventDate}`;
         document.getElementById('ticketQuantity').textContent = `Tickets: ${ticketQuantity}`;
