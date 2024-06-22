@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Detail - EventHubPokhara</title>
+    <title>Event Details - EventHubPokhara</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
         }
+
         .navbar {
             background-color: #343a40;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -39,12 +40,19 @@
         }
 
         .event-details {
-            margin-top: 20px;
+            margin-top: 50px;
         }
+
+        .carousel-item img {
+            max-height: 400px;
+            object-fit: cover;
+        }
+
         footer {
             background-color: #343a40;
             color: #ffffff;
             padding: 2rem 0;
+            margin-top: 50px;
         }
 
         footer p {
@@ -72,20 +80,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
                     <li class="nav-item mr-5"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <!-- User details section -->
-                    <li class="nav-item" id="userImageContainer" style="display: none;">
-                        <div class="d-flex align-items-center">
-                            <img src="" id="userImage" alt="User Image" class="rounded-circle" width="30" height="30">
-                            <a class="nav-link" href="#" id="userName"></a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="logoutBtn" style="display: none;">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -94,16 +90,11 @@
     <div class="container event-details mt-5">
         <div class="row">
             <div class="col-md-8">
-                <h2>Concert XYZ</h2>
-                <p>Date: 01/01/2024 | Location: Pokhara Stadium</p>
+                <h2 id="eventTitle"></h2>
+                <p>Date: <span id="eventDate"></span> | Location: <span id="eventLocation"></span></p>
                 <div id="eventGallery" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="event-image.jpg" class="d-block w-100" alt="Event Image 1">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="event-image2.jpg" class="d-block w-100" alt="Event Image 2">
-                        </div>
+                        <!-- Carousel items dynamically added here -->
                     </div>
                     <a class="carousel-control-prev" href="#eventGallery" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -115,7 +106,7 @@
                     </a>
                 </div>
                 <h3 class="mt-4">Event Details</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae ipsum at felis pretium vehicula a ac nunc. Nulla facilisi.</p>
+                <p id="eventDescription"></p>
             </div>
             <div class="col-md-4">
                 <h3>Book Tickets</h3>
@@ -130,32 +121,103 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Book Now</button>
                     <!-- Hidden fields to pass event details -->
-                    <input type="hidden" id="eventTitle" name="eventTitle" value="Concert XYZ">
-                    <input type="hidden" id="eventDate" name="eventDate" value="01/01/2024">
+                    <input type="hidden" id="eventTitleInput" name="eventTitle">
+                    <input type="hidden" id="eventDateInput" name="eventDate">
                 </form>
             </div>
         </div>
     </div>
 
-     <!-- Footer -->
-     <footer>
-        <div class="container text-center">
-            <p>&copy; 2024 EventHubPokhara. All Rights Reserved.</p>
-            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        </div>
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 EventHubPokhara. All rights reserved. | Designed by <a href="https://www.example.com" target="_blank">Your Company</a></p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Calculate and display total price based on ticket quantity
-        document.getElementById('ticketQuantity').addEventListener('input', function() {
-            const ticketPrice = 20; // Example ticket price
-            const quantity = this.value;
-            const totalPrice = quantity * ticketPrice;
-            document.getElementById('totalPrice').value = '$' + totalPrice;
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventTitle = urlParams.get('title');
+            const eventDate = urlParams.get('date');
+            const eventLocation = urlParams.get('location');
+
+            document.getElementById('eventTitle').textContent = eventTitle;
+            document.getElementById('eventDate').textContent = eventDate;
+            document.getElementById('eventLocation').textContent = eventLocation;
+            document.getElementById('eventTitleInput').value = eventTitle;
+            document.getElementById('eventDateInput').value = eventDate;
+
+            switch (eventTitle) {
+                case 'Concert XYZ':
+                    document.getElementById('eventDescription').textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+                    break;
+                case 'Theater ABC':
+                    document.getElementById('eventDescription').textContent = 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+                    break;
+                case 'Workshop 123':
+                    document.getElementById('eventDescription').textContent = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+                    break;
+                case 'Live Music Festival':
+                    document.getElementById('eventDescription').textContent = 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
+                    break;
+                case 'Drama Night':
+                    document.getElementById('eventDescription').textContent = 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+                    break;
+                case 'Creative Arts Workshop':
+                    document.getElementById('eventDescription').textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+                    break;
+                case 'Rock Concert':
+                    document.getElementById('eventDescription').textContent = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+                    break;
+                default:
+                    document.getElementById('eventDescription').textContent = '';
+                    break;
+            }
+
+            // Populate carousel images dynamically based on event title
+            switch (eventTitle) {
+                case 'Concert XYZ':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Theater ABC':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Workshop 123':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Live Music Festival':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Drama Night':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Creative Arts Workshop':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                case 'Rock Concert':
+                    populateCarousel(['https://via.placeholder.com/800x600']);
+                    break;
+                default:
+                    populateCarousel([]);
+                    break;
+            }
         });
+
+        function populateCarousel(imageUrls) {
+            const carouselInner = document.querySelector('#eventGallery .carousel-inner');
+            carouselInner.innerHTML = '';
+
+            imageUrls.forEach((url, index) => {
+                const itemClass = index === 0 ? 'carousel-item active' : 'carousel-item';
+                const imageElement = `
+                    <div class="${itemClass}">
+                        <img src="${url}" class="d-block w-100" alt="Event Image ${index + 1}">
+                    </div>
+                `;
+                carouselInner.innerHTML += imageElement;
+            });
+        }
     </script>
 </body>
 </html>

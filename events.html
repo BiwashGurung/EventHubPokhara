@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,7 +63,6 @@
         }
     </style>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -78,18 +76,6 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item active"><a class="nav-link" href="events.html">Events</a></li>
                     <li class="nav-item mr-5"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <!-- User details section -->
-                    <li class="nav-item" id="userImageContainer" style="display: none;">
-                        <div class="d-flex align-items-center">
-                            <img src="" id="userImage" alt="User Image" class="rounded-circle" width="30" height="30">
-                            <a class="nav-link" href="#" id="userName"></a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="logoutBtn" style="display: none;">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -130,7 +116,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Concert XYZ</h5>
                                 <p class="card-text">01/01/2024 | Pokhara Stadium</p>
-                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                                <a href="event-detail.html?title=Concert%20XYZ&date=01/01/2024&location=Pokhara%20Stadium" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -140,7 +126,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Theater ABC</h5>
                                 <p class="card-text">05/02/2024 | Pokhara Hall</p>
-                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                                <a href="event-detail.html?title=Theater%20ABC&date=05/02/2024&location=Pokhara%20Hall" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -150,7 +136,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Workshop 123</h5>
                                 <p class="card-text">15/03/2024 | Pokhara Community Center</p>
-                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                                <a href="event-detail.html?title=Workshop%20123&date=15/03/2024&location=Pokhara%20Community%20Center" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -160,7 +146,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Live Music Festival</h5>
                                 <p class="card-text">10/04/2024 | Pokhara Lakeside</p>
-                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                                <a href="event-detail.html?title=Live%20Music%20Festival&date=10/04/2024&location=Pokhara%20Lakeside" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -170,7 +156,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Drama Night</h5>
                                 <p class="card-text">20/05/2024 | Pokhara Theater</p>
-                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                                <a href="event-detail.html?title=Drama%20Night&date=20/05/2024&location=Pokhara%20Theater" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -180,7 +166,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Creative Arts Workshop</h5>
                                 <p class="card-text">30/06/2024 | Pokhara Arts Center</p>
-                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                                <a href="event-detail.html?title=Creative%20Arts%20Workshop&date=30/06/2024&location=Pokhara%20Arts%20Center" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -189,83 +175,47 @@
                             <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Concert Image">
                             <div class="card-body">
                                 <h5 class="card-title">Rock Concert</h5>
-                                <p class="card-text">15/07/2024 | Pokhara Rock Arena</p>
-                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-type="theater" data-date="2024-08-22" data-location="pokhara">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Theater Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Comedy Show</h5>
-                                <p class="card-text">22/08/2024 | Pokhara Comedy Club</p>
-                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-type="workshop" data-date="2024-09-10" data-location="pokhara">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Workshop Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Photography Workshop</h5>
-                                <p class="card-text">10/09/2024 | Pokhara Photo Studio</p>
-                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                                <p class="card-text">15/07/2024 | Pokhara Stadium</p>
+                                <a href="event-detail.html?title=Rock%20Concert&date=15/07/2024&location=Pokhara%20Stadium" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <nav>
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav> -->
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2024 EventHubPokhara. All Rights Reserved.</p>
-            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        </div>
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 EventHubPokhara. All rights reserved. | Designed by <a href="https://www.example.com" target="_blank">Your Company</a></p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function applyFilters() {
-            var eventType = document.getElementById('eventType').value.toLowerCase();
+            var eventType = document.getElementById('eventType').value;
             var eventDate = document.getElementById('eventDate').value;
             var eventLocation = document.getElementById('eventLocation').value.toLowerCase();
-            var events = document.querySelectorAll('#eventList .col-md-4');
 
-            events.forEach(function(event) {
-                var type = event.getAttribute('data-type');
-                var date = event.getAttribute('data-date');
-                var location = event.getAttribute('data-location');
+            var eventCards = document.querySelectorAll('#eventList .col-md-4');
 
-                var matchesType = (eventType === 'all' || eventType === type);
-                var matchesDate = (!eventDate || eventDate === date);
-                var matchesLocation = (!eventLocation || location.includes(eventLocation));
+            eventCards.forEach(function(card) {
+                var cardType = card.getAttribute('data-type');
+                var cardDate = card.getAttribute('data-date');
+                var cardLocation = card.getAttribute('data-location').toLowerCase();
+
+                var matchesType = eventType === 'all' || cardType === eventType;
+                var matchesDate = eventDate === '' || cardDate === eventDate;
+                var matchesLocation = eventLocation === '' || cardLocation.includes(eventLocation);
 
                 if (matchesType && matchesDate && matchesLocation) {
-                    event.style.display = 'block';
+                    card.style.display = 'block';
                 } else {
-                    event.style.display = 'none';
+                    card.style.display = 'none';
                 }
             });
         }
     </script>
 </body>
-
 </html>
