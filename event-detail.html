@@ -92,6 +92,7 @@
             <div class="col-md-8">
                 <h2 id="eventTitle"></h2>
                 <p>Date: <span id="eventDate"></span> | Location: <span id="eventLocation"></span></p>
+                <p>Price: NPR <span id="eventPrice"></span></p>
                 <div id="eventGallery" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <!-- Carousel items dynamically added here -->
@@ -116,10 +117,11 @@
                         <input type="number" class="form-control" id="ticketQuantity" name="ticketQuantity" min="1" value="1" required>
                     </div>
                     <div class="form-group">
-                        <label for="totalPrice">Total Price</label>
+                        <label for="totalPrice">Total Price (NPR)</label>
                         <input type="text" class="form-control" id="totalPrice" name="totalPrice" readonly>
                     </div>
-                    <button type="submit" class="btn btn-primary">Book Now</button>
+                    <button type="button" onclick="calculateTotalPrice()" class="btn btn-primary">Calculate Total</button>
+                    <button type="submit" class="btn btn-success">Book Now</button>
                     <!-- Hidden fields to pass event details -->
                     <input type="hidden" id="eventTitleInput" name="eventTitle">
                     <input type="hidden" id="eventDateInput" name="eventDate">
@@ -141,12 +143,14 @@
             const eventTitle = urlParams.get('title');
             const eventDate = urlParams.get('date');
             const eventLocation = urlParams.get('location');
+            const eventPrice = getPriceForEvent(eventTitle); // Assuming a function to get price based on event
 
             document.getElementById('eventTitle').textContent = eventTitle;
             document.getElementById('eventDate').textContent = eventDate;
             document.getElementById('eventLocation').textContent = eventLocation;
             document.getElementById('eventTitleInput').value = eventTitle;
             document.getElementById('eventDateInput').value = eventDate;
+            document.getElementById('eventPrice').textContent = eventPrice.toLocaleString('en-NP'); // Formatting price as NPR
 
             switch (eventTitle) {
                 case 'Concert XYZ':
@@ -155,21 +159,7 @@
                 case 'Theater ABC':
                     document.getElementById('eventDescription').textContent = 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
                     break;
-                case 'Workshop 123':
-                    document.getElementById('eventDescription').textContent = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
-                    break;
-                case 'Live Music Festival':
-                    document.getElementById('eventDescription').textContent = 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
-                    break;
-                case 'Drama Night':
-                    document.getElementById('eventDescription').textContent = 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-                    break;
-                case 'Creative Arts Workshop':
-                    document.getElementById('eventDescription').textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-                    break;
-                case 'Rock Concert':
-                    document.getElementById('eventDescription').textContent = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
-                    break;
+                // Add cases for other events as needed
                 default:
                     document.getElementById('eventDescription').textContent = '';
                     break;
@@ -183,26 +173,25 @@
                 case 'Theater ABC':
                     populateCarousel(['https://via.placeholder.com/800x600']);
                     break;
-                case 'Workshop 123':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
-                    break;
-                case 'Live Music Festival':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
-                    break;
-                case 'Drama Night':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
-                    break;
-                case 'Creative Arts Workshop':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
-                    break;
-                case 'Rock Concert':
-                    populateCarousel(['https://via.placeholder.com/800x600']);
-                    break;
+                // Add cases for other events as needed
                 default:
                     populateCarousel([]);
                     break;
             }
         });
+
+        function getPriceForEvent(eventTitle) {
+            // Function to return price based on event title (dummy implementation)
+            switch (eventTitle) {
+                case 'Concert XYZ':
+                    return 1500; // Example price in NPR
+                case 'Theater ABC':
+                    return 1200; // Example price in NPR
+                // Add cases for other events as needed
+                default:
+                    return 0;
+            }
+        }
 
         function populateCarousel(imageUrls) {
             const carouselInner = document.querySelector('#eventGallery .carousel-inner');
@@ -217,6 +206,13 @@
                 `;
                 carouselInner.innerHTML += imageElement;
             });
+        }
+
+        function calculateTotalPrice() {
+            const ticketQuantity = document.getElementById('ticketQuantity').value;
+            const eventPrice = getPriceForEvent(document.getElementById('eventTitleInput').value);
+            const totalPrice = ticketQuantity * eventPrice;
+            document.getElementById('totalPrice').value = totalPrice.toLocaleString('en-NP');
         }
     </script>
 </body>
