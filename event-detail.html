@@ -118,9 +118,9 @@
                     </div>
                     <div class="form-group">
                         <label for="totalPrice">Total Price (NPR)</label>
-                        <input type="text" class="form-control" id="totalPrice" name="totalPrice" readonly>
+                        <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="0.00" readonly>
                     </div>
-                    <button type="button" onclick="calculateTotalPrice()" class="btn btn-primary">Calculate Total</button>
+                    <!-- <button type="button" onclick="calculateTotalPrice()" class="btn btn-primary">Calculate Total</button> -->
                     <button type="submit" class="btn btn-success">Book Now</button>
                     <!-- Hidden fields to pass event details -->
                     <input type="hidden" id="eventTitleInput" name="eventTitle">
@@ -218,6 +218,12 @@
                     populateCarousel([]);
                     break;
             }
+
+            // Initial total price calculation
+            calculateTotalPrice();
+
+            // Recalculate total price when the number of tickets changes
+            document.getElementById('ticketQuantity').addEventListener('input', calculateTotalPrice);
         });
 
         function getPriceForEvent(eventTitle) {
@@ -249,7 +255,7 @@
             const ticketQuantity = document.getElementById('ticketQuantity').value;
             const eventPrice = document.getElementById('eventPrice').textContent.replace(/,/g, '');
             const totalPrice = ticketQuantity * eventPrice;
-            document.getElementById('totalPrice').value = totalPrice.toLocaleString('en-NP');
+            document.getElementById('totalPrice').value = totalPrice.toLocaleString('en-NP', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
 
         function populateCarousel(imageUrls) {
