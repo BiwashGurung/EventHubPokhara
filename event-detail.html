@@ -120,7 +120,7 @@
                         <label for="totalPrice">Total Price (NPR)</label>
                         <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="0.00" readonly>
                     </div>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#paymentModal">Pay Now</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#paymentMethodModal">Pay Now</button>
                     <!-- Hidden fields to pass event details -->
                     <input type="hidden" id="eventTitleInput" name="eventTitle">
                     <input type="hidden" id="eventDateInput" name="eventDate">
@@ -129,52 +129,51 @@
         </div>
     </div>
 
-    <!-- Payment Modal -->
-    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <!-- Payment Method Modal -->
+    <div class="modal fade" id="paymentMethodModal" tabindex="-1" role="dialog" aria-labelledby="paymentMethodModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="paymentModalLabel">Choose a Payment Method</h5>
+                    <h5 class="modal-title" id="paymentMethodModalLabel">Choose Payment Method</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="btn btn-primary btn-block" onclick="showEsewaForm()">Pay with eSewa</button>
-                    <button type="button" class="btn btn-secondary btn-block" onclick="showKhaltiForm()">Pay with Khalti</button>
+                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#esewaFormModal">Pay with eSewa</button>
+                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#khaltiFormModal">Pay with Khalti</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- eSewa Payment Form -->
-<div class="modal fade" id="esewaFormModal" tabindex="-1" role="dialog" aria-labelledby="esewaFormModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="esewaFormModalLabel">eSewa Payment</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="https://uat.esewa.com.np/epay/main" method="POST">
-                    <input type="hidden" name="amt" id="esewaAmount" value="0">
-                    <input type="hidden" name="pdc" value="0">
-                    <input type="hidden" name="psc" value="0">
-                    <input type="hidden" name="txAmt" value="0">
-                    <input type="hidden" name="tAmt" id="esewaTotalAmount" value="0">
-                    <input type="hidden" name="pid" value="1234567890">
-                    <input type="hidden" name="scd" value="EPAYTEST">
-                    <input type="hidden" name="su" value="http://merchant.com.np/page/esewa_payment_success">
-                    <input type="hidden" name="fu" value="http://merchant.com.np/page/esewa_payment_failed">
-                    <button type="submit" class="btn btn-success btn-block">Proceed to eSewa</button>
-                </form>
+    <div class="modal fade" id="esewaFormModal" tabindex="-1" role="dialog" aria-labelledby="esewaFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="esewaFormModalLabel">eSewa Payment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="https://uat.esewa.com.np/epay/main" method="POST">
+                        <input type="hidden" name="amt" id="esewaAmount" value="0">
+                        <input type="hidden" name="pdc" value="0">
+                        <input type="hidden" name="psc" value="0">
+                        <input type="hidden" name="txAmt" value="0">
+                        <input type="hidden" name="tAmt" id="esewaTotalAmount" value="0">
+                        <input type="hidden" name="pid" value="1234567890">
+                        <input type="hidden" name="scd" value="EPAYTEST">
+                        <input type="hidden" name="su" value="http://merchant.com.np/page/esewa_payment_success">
+                        <input type="hidden" name="fu" value="http://merchant.com.np/page/esewa_payment_failed">
+                        <button type="submit" class="btn btn-success btn-block">Proceed to eSewa</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
 
     <!-- Khalti Payment Form -->
     <div class="modal fade" id="khaltiFormModal" tabindex="-1" role="dialog" aria-labelledby="khaltiFormModalLabel" aria-hidden="true">
@@ -187,175 +186,95 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Khalti payment form should be integrated here -->
-                    <p>Integration for Khalti payment form is required here.</p>
+                    <button id="khaltiPaymentButton" class="btn btn-success btn-block">Proceed to Khalti</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2024 EventHubPokhara. All Rights Reserved.</p>
-            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; 2024 EventHubPokhara. All rights reserved.</p>
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p>
         </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://khalti.com/static/khalti-checkout.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const eventTitle = urlParams.get('title');
-            const eventDate = urlParams.get('date');
-            const eventLocation = urlParams.get('location');
-            const eventPrice = getPriceForEvent(eventTitle); // Assuming a function to get price based on event
+        // Event details
+        const eventDetails = {
+            title: "Event Name",
+            date: "Event Date",
+            location: "Event Location",
+            price: 1000,
+            description: "Event Description",
+            images: [
+                "img/event1.jpg",
+                "img/event2.jpg",
+                "img/event3.jpg"
+            ]
+        };
 
-            document.getElementById('eventTitle').textContent = eventTitle;
-            document.getElementById('eventDate').textContent = eventDate;
-            document.getElementById('eventLocation').textContent = eventLocation;
-            document.getElementById('eventTitleInput').value = eventTitle;
-            document.getElementById('eventDateInput').value = eventDate;
-            document.getElementById('eventPrice').textContent = eventPrice.toLocaleString('en-NP'); // Formatting price as NPR
+        document.getElementById('eventTitle').textContent = eventDetails.title;
+        document.getElementById('eventDate').textContent = eventDetails.date;
+        document.getElementById('eventLocation').textContent = eventDetails.location;
+        document.getElementById('eventPrice').textContent = eventDetails.price;
+        document.getElementById('eventDescription').textContent = eventDetails.description;
 
-            switch (eventTitle) {
-                case 'Concert XYZ':
-                    document.getElementById('eventDescription').textContent = 'Join us for an electrifying night with Concert XYZ. Enjoy live performances by top artists and experience an unforgettable musical journey. Get ready to dance and sing along to your favorite tunes!';
-                    break;
-                case 'Theater ABC':
-                    document.getElementById('eventDescription').textContent = 'Theater ABC presents a captivating play that explores deep human emotions and relationships. Witness stunning performances by renowned actors and be immersed in a world of drama and intrigue.';
-                    break;
-                case 'Workshop 123':
-                    document.getElementById('eventDescription').textContent = 'Enhance your skills at Workshop 123. Led by industry experts, this workshop offers hands-on training and valuable insights. Whether you are a beginner or a professional, there\'s something for everyone.';
-                    break;
-                case 'Live Music Festival':
-                    document.getElementById('eventDescription').textContent = 'Experience the thrill of live music at the Live Music Festival. Featuring a lineup of diverse artists, this festival promises a day of fun, excitement, and amazing performances. Bring your friends and enjoy the music!';
-                    break;
-                case 'Drama Night':
-                    document.getElementById('eventDescription').textContent = 'Drama Night showcases a powerful performance that delves into compelling narratives and striking characters. This event is a must-see for theater enthusiasts and anyone who appreciates great storytelling.';
-                    break;
-                case 'Creative Arts Workshop':
-                    document.getElementById('eventDescription').textContent = 'Unleash your creativity at the Creative Arts Workshop. This workshop offers a variety of art forms, from painting to sculpture, and provides a space for artists to explore and develop their artistic talents.';
-                    break;
-                case 'Rock Concert':
-                    document.getElementById('eventDescription').textContent = 'Get ready to rock at the Rock Concert! Featuring high-energy performances by top rock bands, this concert is a haven for rock music lovers. Come and enjoy a night filled with powerful music and great vibes.';
-                    break;
-                case 'Art Exhibition 2024':
-                    document.getElementById('eventDescription').textContent = 'Art Exhibition 2024 showcases stunning artworks by local and international artists. Explore a diverse collection of paintings, sculptures, and installations, and be inspired by the creativity on display.';
-                    break;
-                case 'Tech Summit 2024':
-                    document.getElementById('eventDescription').textContent = 'Tech Summit 2024 brings together leading minds in technology to discuss the latest trends and innovations. Attend insightful sessions, network with industry professionals, and discover new opportunities in the tech world.';
-                    break;
-                default:
-                    document.getElementById('eventDescription').textContent = 'Join us for an exciting event that promises to be both entertaining and informative. Stay tuned for more details.';
-                    break;
-            }
-
-            // Populate carousel images dynamically based on event title
-            switch (eventTitle) {
-                case 'Concert XYZ':
-                    populateCarousel(['https://via.placeholder.com/800x600/0000FF/808080?text=Concert+XYZ']);
-                    break;
-                case 'Theater ABC':
-                    populateCarousel(['https://via.placeholder.com/800x600/FF0000/FFFFFF?text=Theater+ABC']);
-                    break;
-                case 'Workshop 123':
-                    populateCarousel(['https://via.placeholder.com/800x600/00FF00/000000?text=Workshop+123']);
-                    break;
-                case 'Live Music Festival':
-                    populateCarousel(['https://via.placeholder.com/800x600/FFFF00/000000?text=Live+Music+Festival']);
-                    break;
-                case 'Drama Night':
-                    populateCarousel(['https://via.placeholder.com/800x600/FF00FF/FFFFFF?text=Drama+Night']);
-                    break;
-                case 'Creative Arts Workshop':
-                    populateCarousel(['https://via.placeholder.com/800x600/00FFFF/000000?text=Creative+Arts+Workshop']);
-                    break;
-                case 'Rock Concert':
-                    populateCarousel(['https://via.placeholder.com/800x600/FFA500/FFFFFF?text=Rock+Concert']);
-                    break;
-                case 'Art Exhibition 2024':
-                    populateCarousel(['https://via.placeholder.com/800x600/800080/FFFFFF?text=Art+Exhibition+2024']);
-                    break;
-                case 'Tech Summit 2024':
-                    populateCarousel(['https://via.placeholder.com/800x600/008000/FFFFFF?text=Tech+Summit+2024']);
-                    break;
-                default:
-                    populateCarousel([]);
-                    break;
-            }
-
-            // Initial total price calculation
-            calculateTotalPrice();
-
-            // Recalculate total price when the number of tickets changes
-            document.getElementById('ticketQuantity').addEventListener('input', calculateTotalPrice);
+        // Populate carousel with images
+        const carouselInner = document.querySelector('.carousel-inner');
+        eventDetails.images.forEach((image, index) => {
+            const div = document.createElement('div');
+            div.className = 'carousel-item' + (index === 0 ? ' active' : '');
+            div.innerHTML = `<img src="${image}" class="d-block w-100" alt="Event Image ${index + 1}">`;
+            carouselInner.appendChild(div);
         });
 
-        function getPriceForEvent(eventTitle) {
-            switch (eventTitle) {
-                case 'Concert XYZ':
-                    return 500;
-                case 'Theater ABC':
-                    return 300;
-                case 'Workshop 123':
-                    return 700;
-                case 'Live Music Festival':
-                    return 1200;
-                case 'Drama Night':
-                    return 800;
-                case 'Creative Arts Workshop':
-                    return 600;
-                case 'Rock Concert':
-                    return 1000;
-                case 'Art Exhibition 2024':
-                    return 1500;
-                case 'Tech Summit 2024':
-                    return 2000;
-                default:
-                    return 0;
+        // Update total price based on ticket quantity
+        document.getElementById('ticketQuantity').addEventListener('input', function() {
+            const quantity = parseInt(this.value);
+            const totalPrice = eventDetails.price * quantity;
+            document.getElementById('totalPrice').value = totalPrice.toFixed(2);
+            document.getElementById('esewaAmount').value = totalPrice.toFixed(2);
+            document.getElementById('esewaTotalAmount').value = totalPrice.toFixed(2);
+        });
+
+        // Pre-fill hidden fields in the booking form
+        document.getElementById('eventTitleInput').value = eventDetails.title;
+        document.getElementById('eventDateInput').value = eventDetails.date;
+
+        // Khalti Payment Integration
+        const khaltiConfig = {
+            publicKey: "test_public_key_dc74e2b7c0f44a4e9c3e4119e71d1e74",
+            productIdentity: "1234567890",
+            productName: eventDetails.title,
+            productUrl: "http://merchant.com.np/product",
+            eventHandler: {
+                onSuccess (payload) {
+                    console.log(payload);
+                    alert("Payment Successful! Payment ID: " + payload.idx);
+                    // Redirect to success URL or show success message
+                },
+                onError (error) {
+                    console.log(error);
+                    alert("Payment Failed! Error: " + error.message);
+                    // Redirect to failure URL or show failure message
+                },
+                onClose () {
+                    console.log("Widget is closing");
+                }
             }
-        }
+        };
 
-        function calculateTotalPrice() {
-            const ticketQuantity = document.getElementById('ticketQuantity').value;
-            const eventPrice = document.getElementById('eventPrice').textContent.replace(/,/g, '');
-            const totalPrice = ticketQuantity * eventPrice;
-            document.getElementById('totalPrice').value = totalPrice.toLocaleString('en-NP', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('esewaAmount').value = totalPrice;
-            document.getElementById('esewaTotalAmount').value = totalPrice;
-        }
+        const khaltiCheckout = new KhaltiCheckout(khaltiConfig);
 
-        function populateCarousel(imageUrls) {
-            const carouselInner = document.querySelector('.carousel-inner');
-            carouselInner.innerHTML = '';
-
-            if (imageUrls.length === 0) {
-                const defaultImage = document.createElement('div');
-                defaultImage.classList.add('carousel-item', 'active');
-                defaultImage.innerHTML = '<img src="https://via.placeholder.com/800x600" class="d-block w-100" alt="Default Image">';
-                carouselInner.appendChild(defaultImage);
-            } else {
-                imageUrls.forEach((url, index) => {
-                    const carouselItem = document.createElement('div');
-                    carouselItem.classList.add('carousel-item');
-                    if (index === 0) carouselItem.classList.add('active');
-                    carouselItem.innerHTML = `<img src="${url}" class="d-block w-100" alt="Event Image ${index + 1}">`;
-                    carouselInner.appendChild(carouselItem);
-                });
-            }
-        }
-
-        function showEsewaForm() {
-            $('#paymentModal').modal('hide');
-            $('#esewaFormModal').modal('show');
-        }
-
-        function showKhaltiForm() {
-            $('#paymentModal').modal('hide');
-            $('#khaltiFormModal').modal('show');
-        }
+        document.getElementById('khaltiPaymentButton').addEventListener('click', function() {
+            const totalAmount = parseFloat(document.getElementById('totalPrice').value) * 100; // Convert to paisa
+            khaltiCheckout.show({ amount: totalAmount });
+        });
     </script>
 </body>
 </html>
