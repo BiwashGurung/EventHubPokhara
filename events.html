@@ -69,7 +69,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">EventHubPokhara</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -115,15 +116,15 @@
                     </div>
                     <div class="form-group">
                         <label for="eventLocation">Location</label>
-                        <input type="text" class="form-control" id="eventLocation">
+                        <input type="text" class="form-control" id="eventLocation" placeholder="Enter Pokhara">
                     </div>
                     <button type="button" class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
                 </form>
             </div>
             <div class="col-md-9">
                 <div class="row" id="eventList">
-                    <!-- Example Event Cards with categories -->
-                    <div class="col-md-4" data-type="concert">
+                    <!-- Event Cards with categories -->
+                    <div class="col-md-4" data-type="concert" data-date="2024-01-01" data-location="pokhara">
                         <div class="card">
                             <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Concert Image">
                             <div class="card-body">
@@ -133,7 +134,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4" data-type="theater">
+                    <div class="col-md-4" data-type="theater" data-date="2024-02-05" data-location="pokhara">
                         <div class="card">
                             <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Theater Image">
                             <div class="card-body">
@@ -143,12 +144,72 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4" data-type="workshop">
+                    <div class="col-md-4" data-type="workshop" data-date="2024-03-15" data-location="pokhara">
                         <div class="card">
                             <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Workshop Image">
                             <div class="card-body">
                                 <h5 class="card-title">Workshop 123</h5>
                                 <p class="card-text">15/03/2024 | Pokhara Community Center</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-type="concert" data-date="2024-04-10" data-location="pokhara">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Concert Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Live Music Festival</h5>
+                                <p class="card-text">10/04/2024 | Pokhara Lakeside</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-type="theater" data-date="2024-05-20" data-location="pokhara">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Theater Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Drama Night</h5>
+                                <p class="card-text">20/05/2024 | Pokhara Theater</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-type="workshop" data-date="2024-06-30" data-location="pokhara">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Workshop Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Creative Arts Workshop</h5>
+                                <p class="card-text">30/06/2024 | Pokhara Arts Center</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-type="concert" data-date="2024-07-15" data-location="pokhara">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Concert Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Rock Concert</h5>
+                                <p class="card-text">15/07/2024 | Pokhara Rock Arena</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-type="theater" data-date="2024-08-22" data-location="pokhara">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Theater Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Comedy Show</h5>
+                                <p class="card-text">22/08/2024 | Pokhara Comedy Club</p>
+                                <a href="event-detail.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-type="workshop" data-date="2024-09-10" data-location="pokhara">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Workshop Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Photography Workshop</h5>
+                                <p class="card-text">10/09/2024 | Pokhara Photo Studio</p>
                                 <a href="event-detail.html" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
@@ -183,14 +244,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function applyFilters() {
-            const eventType = document.getElementById('eventType').value.toLowerCase();
-            const eventCards = document.querySelectorAll('#eventList .col-md-4');
+            var eventType = document.getElementById('eventType').value.toLowerCase();
+            var eventDate = document.getElementById('eventDate').value;
+            var eventLocation = document.getElementById('eventLocation').value.toLowerCase();
+            var events = document.querySelectorAll('#eventList .col-md-4');
 
-            eventCards.forEach(card => {
-                if (eventType === 'all' || card.getAttribute('data-type') === eventType) {
-                    card.style.display = '';
+            events.forEach(function(event) {
+                var type = event.getAttribute('data-type');
+                var date = event.getAttribute('data-date');
+                var location = event.getAttribute('data-location');
+
+                var matchesType = (eventType === 'all' || eventType === type);
+                var matchesDate = (!eventDate || eventDate === date);
+                var matchesLocation = (!eventLocation || location.includes(eventLocation));
+
+                if (matchesType && matchesDate && matchesLocation) {
+                    event.style.display = 'block';
                 } else {
-                    card.style.display = 'none';
+                    event.style.display = 'none';
                 }
             });
         }
