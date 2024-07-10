@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmation - EventHubPokhara</title>
+    <link rel="website icon" type="png" href="EventHubPokharaLogo.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
@@ -121,8 +122,8 @@
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    <button id="printPdf" class="btn btn-primary"><i class="fas fa-print"></i> Print Confirmation (PDF)</button>
-                    <button id="emailConfirmation" class="btn btn-secondary"><i class="fas fa-envelope"></i> Email Confirmation</button>
+                    <button class="btn btn-primary" id="downloadPDF"><i class="fas fa-download"></i> Download E-Ticket</button>
+                    <button class="btn btn-secondary" id="emailTicket"><i class="fas fa-envelope"></i> Email E-Ticket</button>
                 </div>
             </div>
         </div>
@@ -179,36 +180,6 @@
             return Math.floor(100000 + Math.random() * 900000); // Generates a random 6-digit number
         }
 
-        // Print confirmation as PDF using jsPDF
-        document.getElementById('printPdf').addEventListener('click', function () {
-            const doc = new jsPDF();
-
-            // Define content for PDF
-            const bookingSummary = `
-                Name: ${userName}
-                Event: ${eventTitle}
-                Date: ${eventDate}
-                Tickets: ${ticketQuantity}
-                Total Price: ${totalPrice}
-            `;
-
-            // Add content to PDF
-            doc.text(20, 20, 'Booking Summary:');
-            doc.text(20, 30, bookingSummary);
-
-            // Save PDF
-            doc.save('booking_confirmation.pdf');
-        });
-
-        // Email confirmation function (example action)
-        document.getElementById('emailConfirmation').addEventListener('click', function () {
-            const email = prompt('Please enter your email address:');
-            if (email) {
-                // Here you can implement sending an email confirmation (e.g., using a backend service)
-                alert('Email confirmation sent to ' + email);
-            }
-        });
-
         // eSewa payment integration
         document.getElementById('payEsewa').addEventListener('click', function () {
             document.getElementById('esewaForm').submit();
@@ -240,6 +211,32 @@
         document.getElementById("payKhalti").onclick = function () {
             checkout.show({ amount: totalPrice * 100 }); // Amount in paisa
         };
+
+        // Function to download e-ticket as PDF
+        document.getElementById('downloadPDF').addEventListener('click', function () {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFontSize(18);
+            doc.text('E-Ticket', 20, 20);
+            doc.setFontSize(14);
+            doc.text(`Name: ${userName}`, 20, 30);
+            doc.text(`Event: ${eventTitle}`, 20, 40);
+            doc.text(`Date: ${eventDate}`, 20, 50);
+            doc.text(`Tickets: ${ticketQuantity}`, 20, 60);
+            doc.text(`Total Price: ${totalPrice}`, 20, 70);
+            doc.text(`Reference Number: ${referenceNumber}`, 20, 80);
+            doc.save(`E-Ticket-${referenceNumber}.pdf`);
+        });
+
+        // Function to email e-ticket
+        document.getElementById('emailTicket').addEventListener('click', function () {
+            const email = prompt("Please enter your email address:");
+            if (email) {
+                alert("E-Ticket will be sent to " + email);
+                // Here, you would typically send the e-ticket via your backend email service
+                // For demonstration, we'll just show an alert
+            }
+        });
     </script>
 </body>
 
